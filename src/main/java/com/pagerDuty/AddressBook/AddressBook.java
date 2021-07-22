@@ -31,8 +31,21 @@ class AddressBook {
 			JSONArray users = (JSONArray) json.get("users");
 
 			for (int i = 0; i < users.length(); ++i) {
-				result.add(users.getJSONObject(i).getString("name") + "\t" + 
-			               users.getJSONObject(i).getString("email"));
+				StringBuilder sb = new StringBuilder();
+				sb.append(users.getJSONObject(i).getString("name") + "\t" ); 
+			               //users.getJSONObject(i).getString("email") + "\t");
+				
+				if (users.getJSONObject(i).has("contact_methods")) {
+					JSONArray contactMethods = users.getJSONObject(i).getJSONArray("contact_methods");
+					
+					for (int j = 0; j < contactMethods.length(); ++j) {
+						if (contactMethods.getJSONObject(j).has("label"))
+							sb.append("\t" + contactMethods.getJSONObject(j).getString("label"));
+						if (contactMethods.getJSONObject(j).has("address"))
+			                sb.append("\t" + contactMethods.getJSONObject(j).getString("address"));
+					}
+					result.add(sb.toString());
+				}
 			}
 			
 			offset += users.length();

@@ -14,11 +14,12 @@ public class App {
 		int option = in.nextInt();
 
 		if (option == 1) {
-			System.out.println(addressBook.fetch("https://api.pagerduty.com/users?offset="));
+			System.out.println(addressBook.fetch("https://api.pagerduty.com/users?include[]=contact_methods&offset="));
 		}
 		else if (option == 2) { 
 			System.out.print("Enter name : "); 
-			System.out.println(addressBook.fetch("https://api.pagerduty.com/users?query=" + in.next() + "&offset=")); 
+			System.out.println(addressBook.fetch("https://api.pagerduty.com/users?query=" + in.next() 
+			                                     + "&include[]=contact_methods&offset=")); 
 		}
 		else System.out.println("Wrong option entered");
 		
