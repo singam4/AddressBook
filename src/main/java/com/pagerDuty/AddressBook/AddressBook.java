@@ -33,7 +33,6 @@ class AddressBook {
 			for (int i = 0; i < users.length(); ++i) {
 				StringBuilder sb = new StringBuilder();
 				sb.append(users.getJSONObject(i).getString("name") + "\t" ); 
-			               //users.getJSONObject(i).getString("email") + "\t");
 				
 				if (users.getJSONObject(i).has("contact_methods")) {
 					JSONArray contactMethods = users.getJSONObject(i).getJSONArray("contact_methods");
